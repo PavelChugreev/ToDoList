@@ -32,10 +32,11 @@
     text-align: center;
     line-height: 35px;
     font-size: 16px;
-    color: red;
+    color: grey;
     transition: 0.3s all;
-    transform: translateX(30px);
-    opacity: 0;
+    /* transform: translateX(30px); */
+    opacity: 0.5;
+    cursor: pointer;
 }
 
 .app-list-item-label {
@@ -47,12 +48,14 @@
 }
 
 .app-list-item.like .fa-heart {
+    color: red;
     opacity: 1;
-    transform: translateX(0px);
+    /* transform: translateX(0px); */
 }
 
 .app-list-item.important .app-list-item-label {
   color: #FFD700;
+  /* border: 2px solid red */
 }
 
 .app-list-item.important .btn-star {

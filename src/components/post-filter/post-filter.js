@@ -4,8 +4,8 @@ import "./post-filter.css";
 const Filter = () => {
     return(
         <div className="btn-group">
-            <button>All</button>
-            <button>Liked</button>
+            <button type="button" className="btn btn-info">All</button>
+            <button type="button" className="btn btn-outline-secondary">Liked</button>
         </div>
     )
 };

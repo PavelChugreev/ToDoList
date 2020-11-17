@@ -7,6 +7,25 @@ import AddPost from "../post-add-form/post-add-form";
 import "./app.css";
 
 const App = () => {
+
+    const data = [
+        {
+            label: "I continue to learning. It's so difficult, but I can!",
+            important: true,
+            id: "qwe"
+        },
+        {
+            label: "There were first steps in REACT today",
+            important: false,
+            id: "ewq"
+        },
+        {
+            label: "Going to learn REACT",
+            important: false,
+            id: "qaz"
+        }
+    ];
+
     return (
         <div className="app">
             <AppHeader/>
@@ -14,7 +33,7 @@ const App = () => {
                 <SearchPanel/>
                 <Filter/>
             </div>
-            <PostList/>
+            <PostList posts={data}/>
             <AddPost/>
         </div>
 
