@@ -3,14 +3,15 @@ import PostListItem from "../post-list-item/post-list-item";
 import "./post-list.css";
 
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
 
     const elements = posts.map(item => {
         return(
             <li key={item.id} className="list-group-item">
                 <PostListItem 
                     label={item.label} 
-                    important={item.important}/>
+                    important={item.important}
+                    onDelete={() => onDelete(item.id)}/>
             </li>
         );
     });

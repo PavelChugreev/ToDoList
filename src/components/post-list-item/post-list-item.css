@@ -54,8 +54,8 @@
 }
 
 .app-list-item.important .app-list-item-label {
-  color: #FFD700;
-  /* border: 2px solid red */
+  /* color: #FFD700; */
+  border-bottom: 2px solid red;
 }
 
 .app-list-item.important .btn-star {
