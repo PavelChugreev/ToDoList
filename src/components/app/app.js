@@ -29,7 +29,9 @@ export default class App extends Component {
                     like: false,
                     id: 3
                 }
-            ]
+            ],
+            term: "",
+            filter: "all"
         }
         this.maxId = 4;
 
@@ -37,6 +39,8 @@ export default class App extends Component {
         this.addItem = this.addItem.bind(this);
         this.onTogImportant = this.onTogImportant.bind(this);
         this.onTogLiked = this.onTogLiked.bind(this);
+        this.onUpdateTerm = this.onUpdateTerm.bind(this);
+        this.onUpdateFilter = this.onUpdateFilter.bind(this);
     }
 
     deleteItem(id){
@@ -65,34 +69,79 @@ export default class App extends Component {
             const item = data[index];
             const newItem = {...item, important: !item.important}
             const newArr = [...data.slice(0, index), newItem, ...data.slice(index+1)];
-            console.log("1")
             return {data: newArr};
         })
     }
+
     onTogLiked(id){
         this.setState(({data}) => {
             const index = data.findIndex(item => item.id === id);
             const item = data[index];
             const newItem = {...item, like: !item.like}
             const newArr = [...data.slice(0, index), newItem, ...data.slice(index+1)];
-            console.log("2")
             return {data: newArr};
-        })    }
+        })   
+    }
+
+    searchPosts(data, term){
+        if(term.length === 0){
+            return data;
+        } 
+            return data.filter( item => {
+                return item.label.indexOf(term) > -1
+            });
+    }
+
+    onUpdateTerm(termValue){
+        this.setState({term: termValue})
+    }
+
+    filterPosts(data, filter){
+        if(filter === "like"){
+            return data.filter( item => item.like);
+        } else {
+            return data;
+        }
+    }
+
+    onUpdateFilter(filterStatus){
+        this.setState({filter: filterStatus})
+    }
+
+
 
     render() {
+        const {data, term, filter} = this.state;
+        const liked = data.filter(item => item.like).length;
+        const allPosts = data.length;
+
+        const filteredPost = this.filterPosts(data, filter);
+        const visiblePosts = this.searchPosts(filteredPost, term);
+
         return (
             <div className="app">
-                <AppHeader/>
+                <AppHeader
+                    liked={liked}
+                    allPosts={allPosts}
+                />
                 <div className="search-panel d-flex">
-                    <SearchPanel/>
-                    <Filter/>
+                    <SearchPanel
+                        onUpdateTerm={this.onUpdateTerm}
+                    />
+                    <Filter
+                        onUpdateFilter={this.onUpdateFilter}
+                        filter={filter}
+                    />
                 </div>
-                <PostList posts={this.state.data}
-                onDelete={this.deleteItem}
-                onTogImportant={this.onTogImportant}
-                onTogLiked={this.onTogLiked}/>
+                <PostList 
+                    posts={visiblePosts}
+                    onDelete={this.deleteItem}
+                    onTogImportant={this.onTogImportant}
+                    onTogLiked={this.onTogLiked}
+                />
                 <AddPost
-                onAdd={this.addItem}/>
+                    onAdd={this.addItem}
+                />
             </div>
         );
     }
