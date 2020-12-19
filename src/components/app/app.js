@@ -13,7 +13,7 @@ export default class App extends Component {
             data: [
                 {
                     label: "I continue to learning. It's so difficult, but I can!",
-                    important: true,
+                    important: false,
                     like: false,
                     id: 1
                 },
