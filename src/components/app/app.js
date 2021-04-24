@@ -30,7 +30,7 @@ export default class App extends Component {
                     id: 3
                 },
                 {
-                    label: "Create first Reacr-App",
+                    label: "Create first React-App",
                     important: false,
                     done: true,
                     id: 4
@@ -51,7 +51,7 @@ export default class App extends Component {
             term: "",
             filter: "all"
         }
-        this.maxId = 4;
+        this.maxId = 15;
 
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
