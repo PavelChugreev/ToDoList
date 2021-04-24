@@ -35,7 +35,7 @@ export default class AddPost extends Component {
             >
                 <input 
                     type="text"
-                    placeholder="Write down your minds"
+                    placeholder="What should you do?"
                     className="form-control new-post-label"
                     onChange={this.onValueChange}
                     value={this.state.text}
@@ -43,7 +43,7 @@ export default class AddPost extends Component {
                 <button
                     type="submit"
                     className="btn btn-outline-secondary"
-                >ADD</button>
+                >Add new purpose</button>
             </form>
         );
     }

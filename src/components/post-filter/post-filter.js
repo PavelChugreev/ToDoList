@@ -6,7 +6,7 @@ export default class Filter extends Component {
         super(props);
         this.buttons = [
             {name: "all", label: "All"},
-            {name: "like", label: "Liked"}
+            {name: "done", label: "Done"}
         ]
     }
 

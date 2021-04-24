@@ -2,51 +2,31 @@ import React, {Component} from 'react';
 import "./post-list-item.css";
 
 export default class PostListItem extends Component {
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         important: false,
-    //         like: false
-    //     };
-        
-    //     this.onImportant = this.onImportant.bind(this);
-    //     this.onLike = () => {
-    //         this.setState(({like}) => ({
-    //             like: !like
-    //         }));
-    //     };
-    // }
-
-    // onImportant(){
-    //     this.setState(({important}) => ({
-    //         important: !important
-    //     }));
-    // }
 
     render(){
-        const {label, onDelete, onTogImportant, onTogLiked, important, like} = this.props;
-        // const {important, like} = this.state;
+        const {label, onDelete, onTogImportant, onTogDone, important, done} = this.props;
 
         let classNames = "app-list-item d-flex";
         if(important){
             classNames += " important";
         }
-        if(like){
-            classNames += " like";
+        if(done){
+            classNames += " done";
         }
 
         return(
             <div className={classNames}
-                onDoubleClick={onTogLiked}>
+                onDoubleClick={onTogDone}>
                 <span className="app-list-item-label">
                     {label}
                 </span>
                 <div className="btn-wrap d-flex" >
+                    <i  onClick={onTogDone} className=" fa fa-check-circle"></i>
                     <button 
                         onClick={onTogImportant}
                         type="button"
-                        className="btn-star btn-sm">
-                        <i className=" fa fa-star"></i>
+                        className="btn-flag btn-sm">
+                        <i className=" fa fa-flag"></i>
                     </button>
                     <button 
                         type="button"
@@ -54,7 +34,7 @@ export default class PostListItem extends Component {
                         onClick={onDelete}>
                         <i className=" fa fa-trash-o"></i>
                     </button>
-                    <i  onClick={onTogLiked} className="fa fa-heart"></i> 
+                    
                 </div>
             </div>
         );

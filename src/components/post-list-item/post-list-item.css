@@ -20,13 +20,13 @@
     box-shadow: none;
     outline: none;
 }
-.app-list-item .btn-star {
-    color: #FFD700;
+.app-list-item .btn-flag {
+    color: #aeaeae ;
 }
 .app-list-item .btn-trash {
     color: red;
 }
-.app-list-item .fa-heart {
+.app-list-item .fa-check-circle {
     width: 35px;
     height: 35px;
     text-align: center;
@@ -34,7 +34,7 @@
     font-size: 16px;
     color: grey;
     transition: 0.3s all;
-    /* transform: translateX(30px); */
+    transform: scale(1.7);
     opacity: 0.5;
     cursor: pointer;
 }
@@ -44,20 +44,13 @@
   line-height: 35px;
   cursor: pointer;
   user-select: none;
-  transition: 0.5s all;
 }
 
-.app-list-item.like .fa-heart {
-    color: red;
+.app-list-item.done .fa-check-circle {
+    color: green;
     opacity: 1;
-    /* transform: translateX(0px); */
 }
 
-.app-list-item.important .app-list-item-label {
-  /* color: #FFD700; */
-  border-bottom: 2px solid red;
-}
-
-.app-list-item.important .btn-star {
-    color: #aeaeae;
+.app-list-item.important .btn-flag {
+    color: #ff5252;
 }

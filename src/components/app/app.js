@@ -12,23 +12,41 @@ export default class App extends Component {
         this.state = {
             data: [
                 {
-                    label: "I continue to learning. It's so difficult, but I can!",
+                    label: "Learning HTML/CSS",
                     important: false,
-                    like: false,
+                    done: true,
                     id: 1
                 },
                 {
-                    label: "There were first steps in REACT today",
+                    label: "Finish JavaScript course",
                     important: false,
-                    like: false,
+                    done: true,
                     id: 2
                 },
                 {
-                    label: "Going to learn REACT",
+                    label: "Gain knowledge about React",
                     important: false,
-                    like: false,
+                    done: true,
                     id: 3
-                }
+                },
+                {
+                    label: "Create first Reacr-App",
+                    important: false,
+                    done: true,
+                    id: 4
+                },
+                {
+                    label: "Prepare CV and portfolio",
+                    important: false,
+                    done: true,
+                    id: 5
+                },
+                {
+                    label: "Looking for a first job as a Frontend Developer",
+                    important: true,
+                    done: false,
+                    id: 6
+                },
             ],
             term: "",
             filter: "all"
@@ -38,7 +56,7 @@ export default class App extends Component {
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onTogImportant = this.onTogImportant.bind(this);
-        this.onTogLiked = this.onTogLiked.bind(this);
+        this.onTogDone = this.onTogDone.bind(this);
         this.onUpdateTerm = this.onUpdateTerm.bind(this);
         this.onUpdateFilter = this.onUpdateFilter.bind(this);
     }
@@ -73,11 +91,11 @@ export default class App extends Component {
         })
     }
 
-    onTogLiked(id){
+    onTogDone(id){
         this.setState(({data}) => {
             const index = data.findIndex(item => item.id === id);
             const item = data[index];
-            const newItem = {...item, like: !item.like}
+            const newItem = {...item, done: !item.done}
             const newArr = [...data.slice(0, index), newItem, ...data.slice(index+1)];
             return {data: newArr};
         })   
@@ -97,8 +115,8 @@ export default class App extends Component {
     }
 
     filterPosts(data, filter){
-        if(filter === "like"){
-            return data.filter( item => item.like);
+        if(filter === "done"){
+            return data.filter( item => item.done);
         } else {
             return data;
         }
@@ -108,11 +126,9 @@ export default class App extends Component {
         this.setState({filter: filterStatus})
     }
 
-
-
     render() {
         const {data, term, filter} = this.state;
-        const liked = data.filter(item => item.like).length;
+        const done = data.filter(item => item.done).length;
         const allPosts = data.length;
 
         const filteredPost = this.filterPosts(data, filter);
@@ -121,7 +137,7 @@ export default class App extends Component {
         return (
             <div className="app">
                 <AppHeader
-                    liked={liked}
+                    done={done}
                     allPosts={allPosts}
                 />
                 <div className="search-panel d-flex">
@@ -137,7 +153,7 @@ export default class App extends Component {
                     posts={visiblePosts}
                     onDelete={this.deleteItem}
                     onTogImportant={this.onTogImportant}
-                    onTogLiked={this.onTogLiked}
+                    onTogDone={this.onTogDone}
                 />
                 <AddPost
                     onAdd={this.addItem}

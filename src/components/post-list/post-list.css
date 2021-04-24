@@ -4,4 +4,15 @@
 .post-list .list-group-item {
   padding: 10px 35px 10px 35px;
   margin-top: 10px; 
+  border-radius: 7px;
+}
+.list-group-item.done{
+  background-color: rgb(234, 255, 234);
+}
+.list-group-item.important{
+  background-color: rgb(255, 242, 242);
+  font-weight: bold;
+}
+.list-group-item.done.important{
+  background-color: rgb(234, 255, 234);
 }
